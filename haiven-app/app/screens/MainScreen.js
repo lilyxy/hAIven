@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, Image } from "react-native";
 import colors from "../config/colors";
 import { Ionicons } from "@expo/vector-icons";
+import { QuickExit } from "../components/QuickExit";
 
 export class Section extends React.Component {
   render() {
@@ -26,15 +27,15 @@ function MainScreen(props) {
         <Section icon="ios-chatboxes" description="Check-In" />
         <Section icon="md-help-circle-outline" description="Support" />
       </View>
+      <View>
+        <QuickExit />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  container: {},
   header: {
     height: "40%",
     width: "100%",
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     width: "40%",
     alignItems: "flex-start",
     justifyContent: "center",
+    padding: 20,
   },
   text: {
     color: "#fff",
