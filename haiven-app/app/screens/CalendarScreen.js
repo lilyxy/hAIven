@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import colors from "../config/colors";
+import { Footer } from "../components/Footer";
 
 function CalendarScreen(props) {
   return (
@@ -22,6 +23,9 @@ function CalendarScreen(props) {
             textMonthFontWeight: "bold",
           }}
         />
+      </View>
+      <View>
+        <Footer />
       </View>
     </SafeAreaView>
   );
