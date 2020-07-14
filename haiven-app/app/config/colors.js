@@ -4,4 +4,7 @@ export default {
   tertiary: "#FFD15C",
   black: "#000",
   white: "#fff",
+  // Moods
+  sad: "#5297FF",
+  angry: "#FF5252",
 };
