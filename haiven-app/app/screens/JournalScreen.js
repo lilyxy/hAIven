@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import { StyleSheet, View, TextInput, Text, Dimensions } from "react-native";
 import colors from "../config/colors";
 
