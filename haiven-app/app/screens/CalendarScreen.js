@@ -9,8 +9,8 @@ function CalendarScreen(props) {
     <SafeAreaView style={styles.container}>
       <View>
         <Calendar
-          style={{
-            alignSelf: "stretch",
+          onDayPress={(day) => {
+            console.log("selected day", day);
           }}
           theme={{
             textSectionTitleColor: colors.primary,
@@ -21,6 +21,7 @@ function CalendarScreen(props) {
             todayTextColor: colors.primary,
             arrowColor: colors.primary,
             textMonthFontWeight: "bold",
+            textMonthFontSize: 30,
           }}
         />
       </View>
