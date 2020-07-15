@@ -1,6 +1,9 @@
 import React from "react";
 import { StyleSheet, View, TextInput, Text, Dimensions } from "react-native";
 import colors from "../config/colors";
+import { FontAwesome } from "@expo/vector-icons";
+import { Footer } from "../components/Footer";
+import { Circle } from "../components/Circle";
 
 export class Journal extends React.Component {
   render() {
@@ -9,7 +12,8 @@ export class Journal extends React.Component {
         <Text style={styles.subheading}>Journal</Text>
         <TextInput
           style={styles.entry}
-          placeholder="   How was your day?"
+          multiline
+          placeholder="How was your day?"
           placeholderTextColor="#000"
         />
       </View>
@@ -17,24 +21,21 @@ export class Journal extends React.Component {
   }
 }
 
-export class Date extends React.Component {
-  render() {
-    let date = new Date();
-    return <View>{date}</View>;
-  }
-}
-
 export class Mood extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{ alignItems: "center", marginRight: 50 }}>
         <Text style={styles.subheading}>{this.props.subheading}</Text>
-        <View
-          style={[styles.circle, { backgroundColor: this.props.bgcolor }]}
-        ></View>
-        <Text style={{ fontWeight: "bold" }}>{this.props.mood}</Text>
-        <Text>{this.props.time}</Text>
-        <Text>{this.props.length}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View
+            style={[styles.circle, { backgroundColor: this.props.bgcolor }]}
+          ></View>
+          <Text>{this.props.mood}</Text>
+        </View>
+        <View style={{ fontStyle: "italic" }}>
+          <Text>{this.props.time}</Text>
+          <Text>{this.props.length}</Text>
+        </View>
       </View>
     );
   }
@@ -42,7 +43,16 @@ export class Mood extends React.Component {
 
 function JournalScreen(props) {
   return (
-    <View>
+    <View style={styles.container}>
+      <View>
+        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+          <FontAwesome name="chevron-left" size={24} color={colors.primary} />
+          <FontAwesome name="chevron-right" size={24} color={colors.primary} />
+        </View>
+      </View>
+      <View>
+        <Text style={styles.dateHeading}>Date Goes Here</Text>
+      </View>
       <View style={[styles.container, styles.layout]}>
         <Mood subheading="My Mood" bgcolor={colors.sad} mood="Sad" />
         <Mood
@@ -56,19 +66,33 @@ function JournalScreen(props) {
       <View style={{ alignItems: "stretch" }}>
         <Journal />
       </View>
+      <Footer />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 15,
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 20,
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  mood: {
+    flexDirection: "row",
+  },
+  dateHeading: {
+    backgroundColor: colors.primary,
+    borderRadius: 10,
+    color: "#fff",
+    fontWeight: "bold",
+    padding: 10,
+    margin: 15,
   },
   entry: {
     backgroundColor: colors.secondary,
+    minHeight: Dimensions.get("window").height * 0.3,
     borderRadius: 10,
+    padding: 10,
   },
   subheading: {
     color: colors.primary,
@@ -79,6 +103,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     alignItems: "baseline",
+    alignSelf: "flex-start",
   },
   circle: {
     borderRadius:
