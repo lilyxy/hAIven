@@ -4,7 +4,8 @@ import FeatureScreen from "./app/screens/FeatureScreen";
 import MainScreen from "./app/screens/MainScreen";
 import JournalScreen from "./app/screens/JournalScreen";
 import CalendarScreen from "./app/screens/CalendarScreen";
+import ChatBotScreen from "./app/screens/ChatbotScreen";
 
 export default function App() {
-  return <JournalScreen />;
+  return <ChatBotScreen />;
 }
