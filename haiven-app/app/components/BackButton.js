@@ -16,6 +16,5 @@ export class BackButton extends React.Component {
 const styles = StyleSheet.create({
   back: {
     alignSelf: "flex-start",
-    position: "absolute",
   },
 });
