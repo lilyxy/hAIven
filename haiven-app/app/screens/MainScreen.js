@@ -3,28 +3,38 @@ import { SafeAreaView, View, StyleSheet, Text, Image } from "react-native";
 import colors from "../config/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { QuickExit } from "../components/QuickExit";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
-export class Section extends React.Component {
-  render() {
-    return (
-      <View style={styles.button}>
-        <Ionicons name={this.props.icon} size={50} color={colors.tertiary} />
-        <Text style={styles.text}>{this.props.description}</Text>
-      </View>
-    );
-  }
+function Section({ screenName, icon, description }) {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.button}>
+      <TouchableOpacity onPress={() => navigation.navigate(screenName)}>
+        <Ionicons name={icon} size={50} color={colors.tertiary} />
+        <Text style={styles.text}>{description}</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
-function MainScreen(props) {
+function MainScreen({ navigation, props }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Image source={require("../assets/logo.png")} />
       </View>
       <View style={styles.layout}>
-        <Section icon="md-calendar" description="Calendar" />
+        <Section
+          icon="md-calendar"
+          description="Calendar"
+          screenName="Calendar"
+        />
+
         <Section icon="md-book" description="Journal" />
+
         <Section icon="ios-chatboxes" description="Check-In" />
+
         <Section icon="md-help-circle-outline" description="Support" />
       </View>
       <View>

@@ -10,7 +10,7 @@ import {
 
 import colors from "../config/colors";
 
-function WelcomeScreen(props) {
+function WelcomeScreen({ navigation, props }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.background}>
@@ -28,7 +28,13 @@ function WelcomeScreen(props) {
           placeholderTextColor="#000"
         />
         <View style={styles.logInButton}>
-          <Button title="Log In" color="#A983B3" />
+          <Button
+            title="Log In"
+            color="#A983B3"
+            onPress={() => {
+              navigation.navigate("Feature");
+            }}
+          />
         </View>
       </View>
     </SafeAreaView>
