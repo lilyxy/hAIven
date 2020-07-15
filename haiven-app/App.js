@@ -6,5 +6,5 @@ import JournalScreen from "./app/screens/JournalScreen";
 import CalendarScreen from "./app/screens/CalendarScreen";
 
 export default function App() {
-  return <CalendarScreen />;
+  return <JournalScreen />;
 }
