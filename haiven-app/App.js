@@ -21,10 +21,15 @@ const App = () => {
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Journal" component={JournalScreen} />
-        <Stack.Screen name="ChatBot" component={ChatBotScreen} />
+        {/* <Stack.Screen name="ChatBot" component={ChatBotScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
+/** 
+export default function App() {
+  return <CalendarScreen />;
+}
+*/
 export default App;
