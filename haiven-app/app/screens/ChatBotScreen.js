@@ -1,6 +1,6 @@
 import React from "react";
 import ChatBot from "react-simple-chatbot";
-import { View, Text, StyleSheet } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import { Footer } from "../components/Footer";
 import { ThemeProvider } from "styled-components";
 import colors from "../config/colors";
@@ -8,7 +8,7 @@ import colors from "../config/colors";
 const steps = [
   {
     id: "0",
-    message: "Hey, how is everything going today?",
+    message: "Hey, how are you doing today?",
     trigger: "1",
   },
   {
@@ -27,9 +27,11 @@ function ChatBotScreen(props) {
   return (
     <View style={{ justifyContent: "space-between", flex: 1 }}>
       <Text style={styles.header}>Check In</Text>
-      <ThemeProvider theme={theme}>
-        <ChatBot steps={steps} hideHeader="true" />;
-      </ThemeProvider>
+      <View style={{ flex: 1, height: "100%", justifyContent: "flex-end" }}>
+        <ThemeProvider theme={theme}>
+          <ChatBot steps={steps} hideHeader="true" />;
+        </ThemeProvider>
+      </View>
       <Footer />
     </View>
   );
@@ -39,8 +41,9 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: "bold",
     color: "#fff",
+    height: "10%",
     backgroundColor: colors.primary,
-    fontSize: 20,
+    fontSize: 30,
     padding: 20,
     marginBottom: 15,
   },
@@ -49,6 +52,7 @@ const styles = StyleSheet.create({
 // all available props
 const theme = {
   background: "#fff",
+  fontFamily: "Roboto",
   headerBgColor: colors.primary,
   headerFontColor: "#fff",
   headerFontSize: "15px",
