@@ -11,7 +11,7 @@ export function Section({ screenName, icon, description }) {
   return (
     <View style={styles.button}>
       <TouchableOpacity onPress={() => navigation.navigate(screenName)}>
-        <Ionicons name={icon} size={50} color={colors.tertiary} />
+        <Ionicons name={icon} size={60} color={colors.white} />
         <Text style={styles.text}>{description}</Text>
       </TouchableOpacity>
     </View>
@@ -49,7 +49,10 @@ function MainScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
   header: {
     height: "40%",
     width: "100%",
@@ -63,9 +66,9 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.primary,
-    padding: 15,
+    padding: 10,
     borderRadius: 10,
-    margin: 20,
+    margin: 15,
     width: "40%",
     alignItems: "flex-start",
     justifyContent: "center",
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#fff",
     fontWeight: "bold",
-    marginTop: 15,
+    marginTop: 10,
   },
 });
 

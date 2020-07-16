@@ -30,7 +30,7 @@ function WelcomeScreen({ navigation, props }) {
         <View style={styles.logInButton}>
           <Button
             title="Log In"
-            color="#A983B3"
+            color={colors.primary}
             onPress={() => {
               navigation.navigate("Feature");
             }}
@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   logInButton: {
     alignSelf: "flex-end",
     paddingRight: 20,
-    borderRadius: 10,
   },
 });
 
