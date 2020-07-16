@@ -6,7 +6,7 @@ import colors from "../config/colors";
 export class Feature extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.feature}>
         <View style={styles.text}>
           <Text style={styles.title}>{this.props.title}</Text>
           <Text>{this.props.description}</Text>
@@ -21,7 +21,7 @@ export class Feature extends React.Component {
 
 function FeatureScreen({ navigation, props }) {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Feature
         icon="lock"
         title="Safe and Secure"
@@ -59,6 +59,10 @@ export default FeatureScreen;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  feature: {
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
@@ -74,7 +78,6 @@ const styles = StyleSheet.create({
     width: "80%",
     alignSelf: "flex-end",
   },
-  icon: {},
   circle: {
     width: 100,
     height: 100,
@@ -91,7 +94,6 @@ const styles = StyleSheet.create({
   },
   nextButton: {
     alignSelf: "flex-end",
-    paddingRight: 20,
-    borderRadius: 10,
+    margin: 15,
   },
 });
