@@ -6,7 +6,7 @@ import { Footer } from "../components/Footer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-function Section({ screenName, icon, description }) {
+export function Section({ screenName, icon, description }) {
   const navigation = useNavigation();
   return (
     <View style={styles.button}>
