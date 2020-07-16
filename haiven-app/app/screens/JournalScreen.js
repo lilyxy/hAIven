@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Text, Dimensions } from "react-native";
 import colors from "../config/colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { Footer } from "../components/Footer";
-import { Circle } from "../components/Circle";
+import { Ionicons } from "@expo/vector-icons";
 
 export class Journal extends React.Component {
   render() {
@@ -41,7 +41,8 @@ export class Mood extends React.Component {
   }
 }
 
-function JournalScreen(props) {
+function JournalScreen({ route }) {
+  const { date } = route.params;
   return (
     <View style={styles.container}>
       <View>
@@ -51,7 +52,7 @@ function JournalScreen(props) {
         </View>
       </View>
       <View>
-        <Text style={styles.dateHeading}>Date Goes Here</Text>
+        <Text style={styles.dateHeading}>{date["dateString"]}</Text>
       </View>
       <View style={[styles.container, styles.layout]}>
         <Mood subheading="My Mood" bgcolor={colors.sad} mood="Sad" />
@@ -63,8 +64,14 @@ function JournalScreen(props) {
           length="3 minutes"
         />
       </View>
-      <View style={{ alignItems: "stretch" }}>
-        <Journal />
+      <View>
+        <Ionicons
+          style={styles.notification}
+          name="ios-chatbubbles"
+          size={40}
+          color="#8FBC8F"
+        />
+        <Journal style={{ alignSelf: "stretch" }} />
       </View>
       <Footer />
     </View>
@@ -76,9 +83,16 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     justifyContent: "space-between",
+    backgroundColor: colors.background,
   },
   mood: {
     flexDirection: "row",
+  },
+  notification: {
+    position: "absolute",
+    alignSelf: "flex-end",
+    padding: 10,
+    zIndex: 1,
   },
   dateHeading: {
     backgroundColor: colors.primary,

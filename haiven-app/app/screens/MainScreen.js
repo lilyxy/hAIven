@@ -11,7 +11,7 @@ export function Section({ screenName, icon, description }) {
   return (
     <View style={styles.button}>
       <TouchableOpacity onPress={() => navigation.navigate(screenName)}>
-        <Ionicons name={icon} size={60} color={colors.tertiary} />
+        <Ionicons name={icon} size={60} color={colors.white} />
         <Text style={styles.text}>{description}</Text>
       </TouchableOpacity>
     </View>
