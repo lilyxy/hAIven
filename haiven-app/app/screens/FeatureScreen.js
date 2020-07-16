@@ -19,7 +19,7 @@ export class Feature extends React.Component {
   }
 }
 
-function FeatureScreen(props) {
+function FeatureScreen({ navigation, props }) {
   return (
     <SafeAreaView>
       <Feature
@@ -43,7 +43,13 @@ function FeatureScreen(props) {
         description="The Quick Exit button can be found on every page. Pressing this will automatically close the app and remove the app from “Recently Used Apps”"
       />
       <View style={styles.nextButton}>
-        <Button title="Next" color={colors.primary} />
+        <Button
+          title="Next"
+          color={colors.primary}
+          onPress={() => {
+            navigation.navigate("Main");
+          }}
+        />
       </View>
     </SafeAreaView>
   );

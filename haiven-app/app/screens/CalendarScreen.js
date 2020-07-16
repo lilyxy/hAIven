@@ -4,13 +4,13 @@ import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import colors from "../config/colors";
 import { Footer } from "../components/Footer";
 
-function CalendarScreen(props) {
+function CalendarScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <Calendar
           onDayPress={(day) => {
-            console.log("selected day", day);
+            navigation.navigate("Journal");
           }}
           theme={{
             textSectionTitleColor: colors.primary,
