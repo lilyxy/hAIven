@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, Image } from "react-native";
 import colors from "../config/colors";
 import { Ionicons } from "@expo/vector-icons";
-import { QuickExit } from "../components/QuickExit";
+import { Footer } from "../components/Footer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,7 +18,7 @@ function Section({ screenName, icon, description }) {
   );
 }
 
-function MainScreen({ navigation, props }) {
+function MainScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -31,14 +31,18 @@ function MainScreen({ navigation, props }) {
           screenName="Calendar"
         />
 
-        <Section icon="md-book" description="Journal" />
+        <Section icon="md-book" description="Journal" screenName="Journal" />
 
-        <Section icon="ios-chatboxes" description="Check-In" />
+        <Section
+          icon="ios-chatboxes"
+          description="Check-In"
+          screenName="ChatBot"
+        />
 
         <Section icon="md-help-circle-outline" description="Support" />
       </View>
       <View>
-        <QuickExit />
+        <Footer />
       </View>
     </SafeAreaView>
   );
