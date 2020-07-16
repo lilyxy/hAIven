@@ -1,0 +1,3 @@
+#!/Users/elaine/Documents/hAIven/env/bin/python3
+from numba.pycc import main
+main()

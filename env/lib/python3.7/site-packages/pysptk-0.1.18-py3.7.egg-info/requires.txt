@@ -1,0 +1,15 @@
+scipy
+six
+decorator
+
+[develop]
+cython>=0.28.0
+
+[docs]
+numpydoc
+sphinx_rtd_theme
+seaborn
+
+[test]
+nose
+coverage
