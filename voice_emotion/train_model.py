@@ -1,5 +1,5 @@
 from cnn_model import emotion_model
-from train_test_split import build_train_data
+from build_train import build_train_data
 
 import torch
 import torch.nn as nn
@@ -9,8 +9,8 @@ from matplotlib import pyplot as plt
 
 # Set hyperparameters
 learn_rate = 0.001
-epc = 25
-bt_size = 32
+epc = 1
+bt_size = 128
 
 # Define optimizer and loss function
 
@@ -19,9 +19,17 @@ lossfun = nn.CrossEntropyLoss()
 
 # Lets define a dataloader for train dataset
 
-train_data = build_train_data()
+X, y = build_train_data()
+
+X = torch.from_numpy(X).double()
+y = torch.from_numpy(y).double()
+
+train_data = torch.utils.data.TensorDataset(X, y)
 train_loader = torch.utils.data.DataLoader(
     train_data, batch_size=bt_size, shuffle=True)
+
+X = X.float()
+# y = y.type(torch.LongTensor)
 
 # Put model in train mode
 
@@ -36,14 +44,13 @@ def train(model, train_loader, epochs):
         # iterate through train dataset
 
         for batch_idx, (data, target) in enumerate(train_loader):
-
-            data, target = data.to(device), target.to(device)
+            data = data.float()
 
             # get output
             output = model(data)
 
             # compute loss function
-            loss = lossfun(output, target)
+            loss = lossfun(output, torch.max(target, 1)[1])
 
             # backward pass
             optimizer.zero_grad()
@@ -53,7 +60,8 @@ def train(model, train_loader, epochs):
             optimizer.step()
 
             # bookkeeping
-            accuracy = (output.argmax(-1) == target).float().mean()
+            accuracy = (output.argmax(-1) ==
+                        torch.max(target, 1)[1]).float().mean()
             epoch_loss.append(loss.item())
             epoch_accu.append(accuracy.item())
 
@@ -72,15 +80,3 @@ def train(model, train_loader, epochs):
 
 
 epoch_loss, epoch_accu = train(emotion_model, train_loader, epochs=epc)
-
-# Plot loss
-
-plt.figure(figsize=(10, 5))
-plt.subplot(1, 2, 1)
-plt.plot(epoch_loss)
-plt.xlabel('batch')
-plt.ylabel('loss')
-plt.subplot(1, 2, 2)
-plt.plot(epoch_accu)
-plt.xlabel('batch')
-plt.ylabel('accuracy')

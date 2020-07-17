@@ -1,5 +1,5 @@
 from cnn_model import emotion_model
-# from train_test_split import build_test_data
+from build_test import test_data
 
 import torch
 import torch.nn as nn
@@ -11,7 +11,6 @@ bt_size = 32
 
 # Dataloader for test dataset
 
-test_data = build_test_data()
 test_loader = torch.utils.data.DataLoader(
     test_data, batch_size=bt_size, shuffle=True)
 
