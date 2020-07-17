@@ -7,10 +7,11 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from matplotlib import pyplot as plt
 
+
 # Set hyperparameters
-learn_rate = 0.001
-epc = 1
-bt_size = 128
+learn_rate = 0.0001
+epc = 25
+bt_size = 32
 
 # Define optimizer and loss function
 
@@ -29,10 +30,9 @@ train_loader = torch.utils.data.DataLoader(
     train_data, batch_size=bt_size, shuffle=True)
 
 X = X.float()
-# y = y.type(torch.LongTensor)
+
 
 # Put model in train mode
-
 
 def train(model, train_loader, epochs):
     model.train()
@@ -65,10 +65,10 @@ def train(model, train_loader, epochs):
             epoch_loss.append(loss.item())
             epoch_accu.append(accuracy.item())
 
-            if batch_idx % 50 == 0:
-                print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}\tAccuracy: {:.2f}'.format(
-                    epoch+1, batch_idx * len(data), len(train_loader.dataset),
-                    100. * batch_idx / len(train_loader), loss.item(), accuracy.item()))
+            # if batch_idx % 500 == 0:
+            #     print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}\tAccuracy: {:.2f}'.format(
+            #         epoch+1, batch_idx * len(data), len(train_loader.dataset),
+            #         100. * batch_idx / len(train_loader), loss.item(), accuracy.item()))
 
         print('Train Epoch: {}\tAverage Loss: {:.6f}\tAverage Accuracy: {:.2f}'.format(
             epoch+1, sum(epoch_loss)/len(epoch_loss), sum(epoch_accu)/len(epoch_accu)))
