@@ -55,12 +55,13 @@ def clean_files(file_list):
 #ravdess_file_list = glob.glob('RAVDESS/*/*.wav')
 #clean_files(ravdess_file_list)
 
-# tess_file_list = glob.glob('TESS/*.wav')
-# clean_files(tess_file_list)
+#tess_file_list = glob.glob('TESS/*/*.wav')
+#clean_files(tess_file_list)
 
-savee_file_list = glob.glob('SAVEE/*/*/*.wav')
-clean_files(savee_file_list)
+#savee_file_list = glob.glob('SAVEE/*/*/*.wav')
+#clean_files(savee_file_list)
 
+# Now that all of the files have been cleaned lets create a simple csv with filenames and basic features
 # Define function for building the RAVDESS index
 def build_ravdess_index(file_list):
     
@@ -95,9 +96,8 @@ def build_ravdess_index(file_list):
     
     return file_properties
 
-# Now that all of the files have been cleaned lets create a simple csv with filenames and basic features
-# ravdess_clean_list = glob.glob('clean/RAVDESS/*/*.wav')
-# ravdess_index = build_ravdess_index(ravdess_clean_list)
+ravdess_clean_list = glob.glob('clean/RAVDESS/*/*.wav')
+ravdess_index = build_ravdess_index(ravdess_clean_list)
     
 # Define function for building the SAVEE index
 def build_savee_index(file_list):
@@ -127,7 +127,37 @@ def build_savee_index(file_list):
 savee_clean_list = glob.glob('clean/SAVEE/Data/AudioData/*/*.wav')   
 savee_index = build_savee_index(savee_clean_list)
 
-'''
+
+# Define function for building the TESS index
+
+def build_tess_index(file_list):
+    
+    emotion_key = {'neutral': 'neutral', 'happy': 'happy', 'sad': 'sad', 'angry': 'angry',
+                   'fear': 'fearful', 'disgust': 'disgusted', 'ps': 'surprised'}
+
+    df = {'dataset': [], 'filename': [], 'actor': [], 'emotion': [], 'statement': [], 'length': [], 'gender': []}
+
+    for file in file_list:
+        df['dataset'].append('TESS')
+        
+        df['filename'].append(file)
+        file = file.replace('\\', '/')
+        props = file.split('/')[3].split('_')
+        df['actor'].append(props[0])
+        df['emotion'].append(emotion_key[props[2][:-4]])
+        df['statement'].append(props[1])
+        df['gender'].append('female')
+
+        y, sr = librosa.load(file)
+        df['length'].append(y.shape[0]/sr)
+
+    file_properties = pd.DataFrame(df)
+    
+    return file_properties
+
+tess_clean_list = glob.glob('clean/TESS/*/*.wav')
+tess_index = build_tess_index(tess_clean_list)
+
 # Now combine all the dataset indexes into one using their common columns
 common_cols = ['dataset', 'filename', 'actor', 'emotion', 'length', 'gender']
 
@@ -166,4 +196,3 @@ def assign_sets(complete_index):
 complete_index = assign_sets(complete_index)
 
 complete_index.to_csv('complete_index.csv')
-'''
