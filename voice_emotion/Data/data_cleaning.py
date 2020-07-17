@@ -52,18 +52,14 @@ def clean_files(file_list):
     
     print("cleaning complete!")
 
-ravdess_file_list = glob.glob('RAVDESS/*/*.wav')
-clean_files(ravdess_file_list)
+#ravdess_file_list = glob.glob('RAVDESS/*/*.wav')
+#clean_files(ravdess_file_list)
 
-# tess_file_list = glob.glob('../Data/TESS/*.wav')
+# tess_file_list = glob.glob('TESS/*.wav')
 # clean_files(tess_file_list)
 
-# savee_file_list = glob.glob('../Data/SAVEE/*/*/*/*.wav')
-# clean_files(savee_file_list)
-
-
-# Now that all of the files have been cleaned lets create a simple csv with filenames and basic features
-ravdess_clean_list = glob.glob('clean/RAVDESS/*/*.wav')
+savee_file_list = glob.glob('SAVEE/*/*/*.wav')
+clean_files(savee_file_list)
 
 # Define function for building the RAVDESS index
 def build_ravdess_index(file_list):
@@ -99,10 +95,40 @@ def build_ravdess_index(file_list):
     
     return file_properties
 
-ravdess_index = build_ravdess_index(ravdess_clean_list)
+# Now that all of the files have been cleaned lets create a simple csv with filenames and basic features
+# ravdess_clean_list = glob.glob('clean/RAVDESS/*/*.wav')
+# ravdess_index = build_ravdess_index(ravdess_clean_list)
     
-# Now combine all the dataset indexes into one using their common columns
+# Define function for building the SAVEE index
+def build_savee_index(file_list):
+    
+    emotion_key = {'n': 'neutral', 'h': 'happy', 'sa': 'sad', 'a': 'angry', 'f': 'fearful', 'd': 'disgusted', 'su': 'surprised'}
 
+    df = {'dataset': [], 'filename': [], 'actor': [], 'emotion': [], 'repitition': [], 'length': [], 'gender': []}
+
+    for file in file_list:
+        df['dataset'].append('SAVEE')
+        
+        df['filename'].append(file)
+
+        props = file.split('/')
+        df['actor'].append(props[4])
+        df['emotion'].append(emotion_key[props[5][:-6]])
+        df['repitition'].append(props[5][-6:-4])
+        df['gender'].append('male')
+
+        y, sr = librosa.load(file)
+        df['length'].append(y.shape[0]/sr)
+
+    file_properties = pd.DataFrame(df)
+    
+    return file_properties
+ 
+savee_clean_list = glob.glob('clean/SAVEE/Data/AudioData/*/*.wav')   
+savee_index = build_savee_index(savee_clean_list)
+
+'''
+# Now combine all the dataset indexes into one using their common columns
 common_cols = ['dataset', 'filename', 'actor', 'emotion', 'length', 'gender']
 
 complete_index = ravdess_index[common_cols]
@@ -140,3 +166,4 @@ def assign_sets(complete_index):
 complete_index = assign_sets(complete_index)
 
 complete_index.to_csv('complete_index.csv')
+'''
