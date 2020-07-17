@@ -71,11 +71,11 @@ def build_ravdess_index(file_list):
     df = {'dataset': [], 'filename': [], 'actor': [], 'emotion': [], 'intensity': [], 'statement': [], 'repitition': [], 'length': [], 'gender': []}
 
     for file in file_list:
+        
+        file = file.replace('\\', '/')
         df['dataset'].append('RAVDESS')
         
         df['filename'].append(file)
-
-        file = file.replace('\\', '/')
 
         props = file.split('/')[3].split('.')[0].split('-')
         df['actor'].append(props[6])
@@ -109,7 +109,10 @@ def build_savee_index(file_list):
     for file in file_list:
         df['dataset'].append('SAVEE')
         
+        file = file.replace('\\', '/')
+        
         df['filename'].append(file)
+        
 
         props = file.split('/')
         df['actor'].append(props[4])
@@ -138,10 +141,11 @@ def build_tess_index(file_list):
     df = {'dataset': [], 'filename': [], 'actor': [], 'emotion': [], 'statement': [], 'length': [], 'gender': []}
 
     for file in file_list:
+        
+        file = file.replace('\\', '/')
         df['dataset'].append('TESS')
         
         df['filename'].append(file)
-        file = file.replace('\\', '/')
         props = file.split('/')[3].split('_')
         df['actor'].append(props[0])
         df['emotion'].append(emotion_key[props[2][:-4]])
@@ -161,8 +165,7 @@ tess_index = build_tess_index(tess_clean_list)
 # Now combine all the dataset indexes into one using their common columns
 common_cols = ['dataset', 'filename', 'actor', 'emotion', 'length', 'gender']
 
-complete_index = ravdess_index[common_cols]
-#complete_index = pd.concat([ravdess_index[common_cols], savee_index[common_cols], tess_index[common_cols]], axis = 0)
+complete_index = pd.concat([ravdess_index[common_cols], savee_index[common_cols], tess_index[common_cols]], axis = 0)
 complete_index.reset_index(drop = True, inplace = True)
 
 # drop calm because there is not enough data
