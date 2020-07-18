@@ -15,6 +15,9 @@ export class Journal extends React.Component {
           multiline
           placeholder="How was your day?"
           placeholderTextColor="#000"
+          // Implement this when we have a database connected.
+          // When text is changed we can save to database.
+          // onChangeText={(text) => someFunction(text)}
         />
       </View>
     );
@@ -42,17 +45,18 @@ export class Mood extends React.Component {
 }
 
 function JournalScreen({ route }) {
-  const { date } = route.params;
+  var today = new Date().getDate();
+  const { date } = typeof route.params !== "undefined" ? route.params : today;
   return (
     <View style={styles.container}>
-      <View>
+      {/* <View>
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
           <FontAwesome name="chevron-left" size={24} color={colors.primary} />
           <FontAwesome name="chevron-right" size={24} color={colors.primary} />
         </View>
-      </View>
+      </View> */}
       <View>
-        <Text style={styles.dateHeading}>{date["dateString"]}</Text>
+        <Text style={styles.dateHeading}>{date}</Text>
       </View>
       <View style={[styles.container, styles.layout]}>
         <Mood subheading="My Mood" bgcolor={colors.sad} mood="Sad" />
