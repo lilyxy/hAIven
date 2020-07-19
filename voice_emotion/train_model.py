@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 
 
 # Set hyperparameters
-learn_rate = 0.0001
+learn_rate = 0.001
 epc = 25
 bt_size = 32
 
