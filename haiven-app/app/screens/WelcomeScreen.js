@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import {
   StyleSheet,
   Image,
@@ -10,35 +11,69 @@ import {
 
 import colors from "../config/colors";
 
-function WelcomeScreen({ navigation, props }) {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.background}>
-        <Image source={require("../assets/logo.png")} />
-      </View>
-      <View style={styles.logIn}>
-        <TextInput
-          style={styles.input}
-          placeholder="   username"
-          placeholderTextColor="#000"
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="   password"
-          placeholderTextColor="#000"
-        />
-        <View style={styles.logInButton}>
-          <Button
-            title="Log In"
-            color={colors.primary}
-            onPress={() => {
-              navigation.navigate("Feature");
-            }}
-          />
+
+class WelcomeScreen extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
+  handleUsername = (text) => {
+    this.setState({ username: text })
+    console.log(text)
+  }
+  handlePassword = (text) => {
+    this.setState({ password: text})
+  }
+
+  handleLogin = () => {
+    axios.post('http://127.0.0.1:5000/home', {
+      username : this.state.username,
+      password: this.state.password
+    })
+    .then(response => {
+      if (response.data == "Does not exist"){
+        this.props.navigation.navigate("Welcome");
+      } else if (response.data == "Wrong password") {
+        this.props.navigation.navigate("Welcome");
+      } else {
+        this.props.navigation.navigate("Feature");
+      }
+    }).catch(error => {console.log(error)});    
+  }
+  render(){
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.background}>
+          <Image source={require("../assets/logo.png")} />
         </View>
-      </View>
-    </SafeAreaView>
-  );
+        <View style={styles.logIn}>
+          <TextInput
+            style={styles.input}
+            placeholder="   username"
+            placeholderTextColor="#000"
+            onChangeText = {this.handleUsername}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="   password"
+            placeholderTextColor="#000"
+            onChangeText = {this.handlePassword}
+            secureTextEntry
+          />
+          <View style={styles.logInButton}>
+            <Button
+              title="Log In"
+              color={colors.primary}
+              onPress={this.handleLogin}
+            />
+          </View>
+        </View>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

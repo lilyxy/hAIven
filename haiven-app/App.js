@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import FeatureScreen from "./app/screens/FeatureScreen";
@@ -6,6 +6,7 @@ import MainScreen from "./app/screens/MainScreen";
 import CalendarScreen from "./app/screens/CalendarScreen";
 import JournalScreen from "./app/screens/JournalScreen";
 import ChatBotScreen from "./app/screens/ChatBotScreen";
+import Calculator from "./React-Native-Calculator-master/App/screens/Home"
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -13,9 +14,33 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [userToken, setUserToken] = React.useState(null);
+
+  const authContext = React.useMemo(() => ({
+    signIn: () => {
+      setIsLoading(false);
+    },
+    signOut: () => {
+      setUserToken(null);
+      setIsLoading(false);
+    },
+    signUp: () => {
+      setUserToken('fgkj');
+      setIsLoading(false);
+    }
+  }));
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Calculator" component={Calculator} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Feature" component={FeatureScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
