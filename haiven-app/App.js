@@ -5,8 +5,7 @@ import FeatureScreen from "./app/screens/FeatureScreen";
 import MainScreen from "./app/screens/MainScreen";
 import CalendarScreen from "./app/screens/CalendarScreen";
 import JournalScreen from "./app/screens/JournalScreen";
-import ChatBotScreen from "./app/screens/ChatBotScreen";
-import Calculator from "./React-Native-Calculator-master/App/screens/Home"
+// import ChatBotScreen from "./app/screens/ChatBotScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -40,7 +39,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Calculator" component={Calculator} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="Feature" component={FeatureScreen} />
         <Stack.Screen name="Main" component={MainScreen} />
@@ -52,9 +50,9 @@ const App = () => {
   );
 };
 
-/** 
-export default function App() {
-  return <CalendarScreen />;
-}
-*/
+// // For testing one screen
+// function App() {
+//   return <JournalScreen />;
+// }
+
 export default App;
