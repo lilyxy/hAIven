@@ -27,7 +27,9 @@ function CalendarScreen({ navigation }) {
       <View>
         <Calendar
           onDayPress={(day) => {
-            navigation.navigate("Journal", { date: day["dateString"] });
+            navigation.navigate("Journal", {
+              date: new Date(day["dateString"]).toDateString(),
+            });
           }}
           theme={{
             textSectionTitleColor: colors.primary,
