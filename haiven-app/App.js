@@ -25,9 +25,9 @@ const App = () => {
       setIsLoading(false);
     },
     signUp: () => {
-      setUserToken('fgkj');
+      setUserToken("fgkj");
       setIsLoading(false);
-    }
+    },
   }));
 
   useEffect(() => {
