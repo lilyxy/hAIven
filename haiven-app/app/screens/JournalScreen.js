@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { StyleSheet, View, TextInput, Text, Dimensions } from "react-native";
 import colors from "../config/colors";
 import { FontAwesome } from "@expo/vector-icons";
@@ -6,6 +7,34 @@ import { Footer } from "../components/Footer";
 import { Ionicons } from "@expo/vector-icons";
 
 export class Journal extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: '',
+      journalContent: '',
+      journalMood: ''
+    }
+  }
+  handleJournalContent = (text) => {
+    console.log(username)
+    this.setState({journalContent: text})
+    console.log(text)
+  }
+  handleJournalMood = (text) => {
+    this.setState({journalContent:text})
+    console.log(mood)
+  }
+  handleJournal = () => {
+    axios.post('http://127.0.0.1:5000/journal', {
+      username: this.state.username, 
+      journalContent: this.state.journalContent, 
+      journalMood: this.state.journalMood
+    })
+    .then(response=>{
+      console.log(response)
+    }).catch(error => {console.log(error)});    
+  }
+  handleJournal
   render() {
     return (
       <View>
@@ -17,7 +46,7 @@ export class Journal extends React.Component {
           placeholderTextColor="#000"
           // Implement this when we have a database connected.
           // When text is changed we can save to database.
-          // onChangeText={(text) => someFunction(text)}
+          onChangeText={this.handleJournalContent}
         />
       </View>
     );

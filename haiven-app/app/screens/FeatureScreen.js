@@ -4,6 +4,22 @@ import { FontAwesome } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 export class Feature extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      username: '',
+      journalMood: '',
+      journalContent: '',
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+    console.log(nextProps.navigation.state.params.username)
+    if (nextProps.navigation.state.params.username){
+      this.setState({username:nextProps.navigation.state.params.username});
+    }
+  }
   render() {
     return (
       <View style={styles.feature}>

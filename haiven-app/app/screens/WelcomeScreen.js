@@ -13,11 +13,12 @@ import colors from "../config/colors";
 
 
 class WelcomeScreen extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      arr: []
     }
   }
   handleUsername = (text) => {
@@ -30,16 +31,19 @@ class WelcomeScreen extends React.Component{
 
   handleLogin = () => {
     axios.post('http://127.0.0.1:5000/home', {
-      username : this.state.username,
+      username: this.state.username,
       password: this.state.password
     })
     .then(response => {
+      const {navigate} = this.props.navigation
       if (response.data == "Does not exist"){
         this.props.navigation.navigate("Welcome");
       } else if (response.data == "Wrong password") {
         this.props.navigation.navigate("Welcome");
       } else {
-        this.props.navigation.navigate("Feature");
+        this.props.navigation.navigate("Feature", {
+          username: this.state.username,
+        });
       }
     }).catch(error => {console.log(error)});    
   }
