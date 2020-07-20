@@ -1,8 +1,14 @@
 import React from "react";
 import axios from 'axios';
-import { StyleSheet, View, TextInput, Text, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Text,
+  Dimensions,
+  Picker,
+} from "react-native";
 import colors from "../config/colors";
-import { FontAwesome } from "@expo/vector-icons";
 import { Footer } from "../components/Footer";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -62,7 +68,16 @@ export class Mood extends React.Component {
           <View
             style={[styles.circle, { backgroundColor: this.props.bgcolor }]}
           ></View>
-          <Text>{this.props.mood}</Text>
+
+          <Text
+            style={{
+              backgroundColor: colors.grey,
+              borderRadius: 10,
+              padding: 5,
+            }}
+          >
+            {this.props.mood}
+          </Text>
         </View>
         <View style={{ fontStyle: "italic" }}>
           <Text>{this.props.time}</Text>
@@ -75,6 +90,8 @@ export class Mood extends React.Component {
 
 function JournalScreen({ route }) {
   const { date } = route.params;
+  const [selectedValue, setSelectedValue] = React.useState("");
+  const moodColor = !selectedValue ? colors.grey : colors[selectedValue];
   return (
     <View style={styles.container}>
       {/* <View>
@@ -87,7 +104,20 @@ function JournalScreen({ route }) {
         <Text style={styles.dateHeading}>{date}</Text>
       </View>
       <View style={[styles.container, styles.layout]}>
-        <Mood subheading="My Mood" bgcolor={colors.sad} mood="Sad" />
+        <View>
+          <Mood subheading="My Mood" bgcolor={moodColor} mood={selectedValue} />
+          <View>
+            <Picker
+              selectedValue={selectedValue}
+              onValueChange={(itemValue) => setSelectedValue(itemValue)}
+              prompt="Mood?"
+            >
+              <Picker.Item label="sad" value="sad" />
+              <Picker.Item label="happy" value="happy" />
+              <Picker.Item label="angry" value="angry" />
+            </Picker>
+          </View>
+        </View>
         <Mood
           subheading="Audio (1)"
           bgcolor={colors.angry}

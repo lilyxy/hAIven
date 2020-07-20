@@ -5,7 +5,9 @@ export default {
   background: "#fff",
   black: "#000",
   white: "#fff",
+  grey: "#DCDCDC",
   // Moods
   sad: "#5297FF",
   angry: "#FF5252",
+  happy: "#ffa500",
 };
