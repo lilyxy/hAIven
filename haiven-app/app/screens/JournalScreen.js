@@ -45,8 +45,7 @@ export class Mood extends React.Component {
 }
 
 function JournalScreen({ route }) {
-  var today = new Date().getDate();
-  const { date } = typeof route.params !== "undefined" ? route.params : today;
+  const { date } = route.params;
   return (
     <View style={styles.container}>
       {/* <View>
