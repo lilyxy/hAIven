@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { BackButton } from "./BackButton";
+// import { BackButton } from "./BackButton";
 import { QuickExit } from "./QuickExit";
 
 export class Footer extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <BackButton />
+        {/* <BackButton /> */}
         <QuickExit />
       </View>
     );
