@@ -47,6 +47,65 @@ function CalendarScreen({ navigation }) {
             textMonthFontWeight: "bold",
             textMonthFontSize: 30,
           }}
+          m // Collection of dates that have to be colored in a special way. Default = {}
+          markedDates={{
+            "2020-07-19": {
+              disabled: true,
+              startingDay: true,
+              color: colors.sad,
+              endingDay: true,
+            },
+            "2020-07-20": {
+              disabled: true,
+              startingDay: true,
+              color: colors.sad,
+              endingDay: true,
+            },
+            "2020-07-21": {
+              disabled: true,
+              startingDay: true,
+              color: colors.happy,
+              endingDay: true,
+            },
+            "2020-07-22": {
+              disabled: true,
+              startingDay: true,
+              color: colors.sad,
+              endingDay: true,
+            },
+            "2020-07-23": {
+              disabled: true,
+              startingDay: true,
+              color: colors.angry,
+              endingDay: true,
+            },
+            "2020-07-24": {
+              disabled: true,
+              startingDay: true,
+              color: colors.angry,
+              endingDay: true,
+            },
+            "2020-07-25": {
+              disabled: true,
+              startingDay: true,
+              color: colors.sad,
+              endingDay: true,
+            },
+            "2020-07-26": {
+              disabled: true,
+              startingDay: true,
+              color: colors.happy,
+              endingDay: true,
+            },
+            "2020-07-27": {
+              disabled: true,
+              startingDay: true,
+              color: colors.sad,
+              endingDay: true,
+            },
+          }}
+          // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
+          markingType={"period"}
         />
       </View>
       <View style={{ padding: 10 }}>
