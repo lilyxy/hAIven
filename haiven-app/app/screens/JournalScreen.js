@@ -7,6 +7,7 @@ import {
   Text,
   Dimensions,
   Picker,
+  Button,
 } from "react-native";
 import colors from "../config/colors";
 import { Footer } from "../components/Footer";
@@ -35,6 +36,7 @@ export class Journal extends React.Component {
           // When text is changed we can save to database.
           onChangeText={this.props.onJournalChange}
         />
+        <Button title="Submit" color={colors.primary} />
       </View>
     );
   }
