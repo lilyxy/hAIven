@@ -6,22 +6,24 @@ import { Footer } from "../components/Footer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
-export function Section({ screenName, icon, description }) {
+export function Section({ screenName, icon, description, userid}) {
   var today = new Date().toDateString();
   const navigation = useNavigation();
   return (
     <View style={styles.button}>
       <TouchableOpacity
-        onPress={() => navigation.navigate(screenName, { date: today })}
+        onPress={() => navigation.navigate(screenName, { date: today, username: userid})}
       >
         <Ionicons name={icon} size={60} color={colors.white} />
         <Text style={styles.text}>{description}</Text>
+        {/* <Text style={styles.text}>{userid}</Text> */}
       </TouchableOpacity>
     </View>
   );
 }
 
-function MainScreen() {
+function MainScreen({route}) {
+  const {username} = route.params
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -34,7 +36,7 @@ function MainScreen() {
           screenName="Calendar"
         />
 
-        <Section icon="md-book" description="Journal" screenName="Journal" />
+        <Section icon="md-book" description="Journal" screenName="Journal" userid={username} />
 
         <Section
           icon="ios-chatboxes"

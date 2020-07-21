@@ -35,12 +35,12 @@ class WelcomeScreen extends React.Component{
       password: this.state.password
     })
     .then(response => {
-      const {navigate} = this.props.navigation
       if (response.data == "Does not exist"){
         this.props.navigation.navigate("Welcome");
       } else if (response.data == "Wrong password") {
         this.props.navigation.navigate("Welcome");
       } else {
+        console.log(this.state.username)
         this.props.navigation.navigate("Feature", {
           username: this.state.username,
         });

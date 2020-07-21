@@ -18,11 +18,11 @@ export class Journal extends React.Component {
     this.state = {
       username: '',
       journalContent: '',
-      journalMood: ''
+      journalMood: '',
+      date: ''
     }
   }
   handleJournalContent = (text) => {
-    console.log(username)
     this.setState({journalContent: text})
     console.log(text)
   }
@@ -34,13 +34,13 @@ export class Journal extends React.Component {
     axios.post('http://127.0.0.1:5000/journal', {
       username: this.state.username, 
       journalContent: this.state.journalContent, 
-      journalMood: this.state.journalMood
+      journalMood: this.state.journalMood,
+      date: this.state.journalDate
     })
     .then(response=>{
       console.log(response)
     }).catch(error => {console.log(error)});    
   }
-  handleJournal
   render() {
     return (
       <View>
@@ -79,7 +79,7 @@ export class Mood extends React.Component {
             {this.props.mood}
           </Text>
         </View>
-        <View style={{ fontStyle: "italic" }}>
+        <View style={{}}>
           <Text>{this.props.time}</Text>
           <Text>{this.props.length}</Text>
         </View>
@@ -89,6 +89,7 @@ export class Mood extends React.Component {
 }
 
 function JournalScreen({ route }) {
+  const { username } = route.params
   const { date } = route.params;
   const [selectedValue, setSelectedValue] = React.useState("");
   const moodColor = !selectedValue ? colors.grey : colors[selectedValue];
@@ -109,7 +110,9 @@ function JournalScreen({ route }) {
           <View>
             <Picker
               selectedValue={selectedValue}
-              onValueChange={(itemValue) => setSelectedValue(itemValue)}
+              // onValueChange={(itemValue) => setSelectedValue(itemValue); {this.handleJournalMood}}
+              onValueChange={itemValue => { setSelectedValue(itemValue)}}
+              // onValueChange={itemValue => { setSelectedValue(itemValue); this.handleJournalMood; }}
               prompt="Mood?"
             >
               <Picker.Item label="sad" value="sad" />

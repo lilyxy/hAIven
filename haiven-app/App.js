@@ -13,29 +13,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserToken] = React.useState(null);
-
-  const authContext = React.useMemo(() => ({
-    signIn: () => {
-      setIsLoading(false);
-    },
-    signOut: () => {
-      setUserToken(null);
-      setIsLoading(false);
-    },
-    signUp: () => {
-      setUserToken("fgkj");
-      setIsLoading(false);
-    },
-  }));
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
-
   return (
     <NavigationContainer>
       <Stack.Navigator>

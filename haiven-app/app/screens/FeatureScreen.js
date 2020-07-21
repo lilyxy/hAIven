@@ -4,20 +4,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 export class Feature extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      username: '',
-      journalMood: '',
-      journalContent: '',
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    console.log(nextProps.navigation.state.params.username)
-    if (nextProps.navigation.state.params.username){
-      this.setState({username:nextProps.navigation.state.params.username});
+      username: ''
     }
   }
   render() {
@@ -35,7 +25,8 @@ export class Feature extends React.Component {
   }
 }
 
-function FeatureScreen({ navigation, props }) {
+function FeatureScreen({ navigation, props, route }) {
+  const {username} = route.params
   return (
     <SafeAreaView style={styles.container}>
       <Feature
@@ -63,7 +54,9 @@ function FeatureScreen({ navigation, props }) {
           title="Next"
           color={colors.primary}
           onPress={() => {
-            navigation.navigate("Main");
+            navigation.navigate("Main", {
+              username: username
+            });
           }}
         />
       </View>
