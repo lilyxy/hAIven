@@ -27,8 +27,13 @@ function CalendarScreen({ navigation }) {
       <View>
         <Calendar
           onDayPress={(day) => {
+            var dateSelected = new Date(
+              day["year"],
+              day["month"] - 1,
+              day["day"]
+            );
             navigation.navigate("Journal", {
-              date: new Date(day["dateString"]).toDateString(),
+              date: dateSelected.toDateString(),
             });
           }}
           theme={{
