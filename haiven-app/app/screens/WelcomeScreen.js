@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import {
   StyleSheet,
   Image,
@@ -10,8 +10,6 @@ import {
 } from "react-native";
 
 import colors from "../config/colors";
-
-
 class WelcomeScreen extends React.Component{
   constructor(props){
     super(props)
@@ -22,12 +20,12 @@ class WelcomeScreen extends React.Component{
     }
   }
   handleUsername = (text) => {
-    this.setState({ username: text })
-    console.log(text)
-  }
+    this.setState({ username: text });
+    console.log(text);
+  };
   handlePassword = (text) => {
-    this.setState({ password: text})
-  }
+    this.setState({ password: text });
+  };
 
   handleLogin = () => {
     axios.post('http://127.0.0.1:5000/home', {
@@ -56,15 +54,15 @@ class WelcomeScreen extends React.Component{
         <View style={styles.logIn}>
           <TextInput
             style={styles.input}
-            placeholder="   username"
+            placeholder="username"
             placeholderTextColor="#000"
-            onChangeText = {this.handleUsername}
+            onChangeText={this.handleUsername}
           />
           <TextInput
             style={styles.input}
-            placeholder="   password"
+            placeholder="password"
             placeholderTextColor="#000"
-            onChangeText = {this.handlePassword}
+            onChangeText={this.handlePassword}
             secureTextEntry
           />
           <View style={styles.logInButton}>
@@ -97,6 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     alignSelf: "stretch",
     borderRadius: 10,
+    padding: 10,
   },
   logIn: {
     flex: 1,

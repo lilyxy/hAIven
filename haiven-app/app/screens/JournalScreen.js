@@ -22,25 +22,6 @@ export class Journal extends React.Component {
       date: ''
     }
   }
-  handleJournalContent = (text) => {
-    this.setState({journalContent: text})
-    console.log(text)
-  }
-  handleJournalMood = (text) => {
-    this.setState({journalContent:text})
-    console.log(mood)
-  }
-  handleJournal = () => {
-    axios.post('http://127.0.0.1:5000/journal', {
-      username: this.state.username, 
-      journalContent: this.state.journalContent, 
-      journalMood: this.state.journalMood,
-      date: this.state.journalDate
-    })
-    .then(response=>{
-      console.log(response)
-    }).catch(error => {console.log(error)});    
-  }
   render() {
     return (
       <View>
@@ -52,7 +33,7 @@ export class Journal extends React.Component {
           placeholderTextColor="#000"
           // Implement this when we have a database connected.
           // When text is changed we can save to database.
-          onChangeText={this.handleJournalContent}
+          onChangeText={this.props.onJournalChange}
         />
       </View>
     );
@@ -91,8 +72,21 @@ export class Mood extends React.Component {
 function JournalScreen({ route }) {
   const { username } = route.params
   const { date } = route.params;
-  const [selectedValue, setSelectedValue] = React.useState("");
+  const [selectedValue, setSelectedValue] = React.useState("")
+  const [journalContent, setJournalContent] = React.useState("")
   const moodColor = !selectedValue ? colors.grey : colors[selectedValue];
+
+  const handleJournal = () => {
+    axios.post('http://127.0.0.1:5000/journal', {
+      username: username, 
+      journalContent: journalContent, 
+      journalMood: selectedValue,
+      date: date
+    })
+    .then(response=>{
+      console.log(response)
+    }).catch(error => {console.log(error)});    
+  }
   return (
     <View style={styles.container}>
       {/* <View>
@@ -136,7 +130,11 @@ function JournalScreen({ route }) {
           size={40}
           color="#8FBC8F"
         />
-        <Journal style={{ alignSelf: "stretch" }} />
+        <Journal 
+          style={{ alignSelf: "stretch" }} 
+          onJournalChange={text => setJournalContent(text)}
+        />
+        <button onClick={handleJournal}>Submit</button>
       </View>
       <Footer />
     </View>

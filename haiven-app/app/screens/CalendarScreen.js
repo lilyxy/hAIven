@@ -6,6 +6,15 @@ import { Footer } from "../components/Footer";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 export class Insight extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username: '',
+      journalContent: '',
+      journalMood: '',
+      date: ''
+    }
+  }
   render() {
     return (
       <View style={styles.insight}>
@@ -27,8 +36,13 @@ function CalendarScreen({ navigation }) {
       <View>
         <Calendar
           onDayPress={(day) => {
+            var dateSelected = new Date(
+              day["year"],
+              day["month"] - 1,
+              day["day"]
+            );
             navigation.navigate("Journal", {
-              date: new Date(day["dateString"]).toDateString(),
+              date: dateSelected.toDateString(),
             });
           }}
           theme={{
