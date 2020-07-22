@@ -1,19 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { View } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
+
+const BOT_USER = {
+  _id: 2,
+  name: "Sally",
+  avatar: "https://i.imgur.com/7k12EPD.png",
+};
 
 class ChatBot extends React.Component {
   state = {
     messages: [
       {
         _id: 1,
-        text: `Hey, how are you doing today?`,
+        text: `Hey! I've noticed you've been feeling upset lately, how are you doing today?`,
         createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: "Sally",
-          avatar: "https://i.imgur.com/7k12EPD.png",
-        },
+        user: BOT_USER,
       },
     ],
   };
@@ -21,6 +23,25 @@ class ChatBot extends React.Component {
   onSend(messages = []) {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
+    }));
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(
+        previousState.messages,
+        "Do you want to talk?"
+      ),
+    }));
+  }
+
+  sendBotResponse() {
+    let msg = {
+      _id: this.state.messages.length + 1,
+      text: "Do you want to talk about it?",
+      createdAt: new Date(),
+      user: BOT_USER,
+    };
+
+    this.setState((currentState) => ({
+      messages: GiftedChat.append(currentState.messages, [msg]),
     }));
   }
 
