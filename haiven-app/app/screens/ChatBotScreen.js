@@ -24,9 +24,12 @@ class ChatBot extends React.Component {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }));
-    setTimeout(() => {
-      this.sendBotResponse();
-    }, 1000);
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(
+        previousState.messages,
+        "Do you want to talk?"
+      ),
+    }));
   }
 
   sendBotResponse() {
@@ -37,8 +40,8 @@ class ChatBot extends React.Component {
       user: BOT_USER,
     };
 
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, [msg]),
+    this.setState((currentState) => ({
+      messages: GiftedChat.append(currentState.messages, [msg]),
     }));
   }
 
