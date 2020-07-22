@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, View, StyleSheet, Text, Image } from "react-native";
 import colors from "../config/colors";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Footer } from "../components/Footer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -14,7 +14,7 @@ export function Section({ screenName, icon, description }) {
       <TouchableOpacity
         onPress={() => navigation.navigate(screenName, { date: today })}
       >
-        <Ionicons name={icon} size={60} color={colors.white} />
+        <MaterialCommunityIcons name={icon} size={65} color={colors.white} />
         <Text style={styles.text}>{description}</Text>
       </TouchableOpacity>
     </View>
@@ -29,20 +29,23 @@ function MainScreen() {
       </View>
       <View style={styles.layout}>
         <Section
-          icon="md-calendar"
+          icon="calendar-multiselect"
           description="Calendar"
           screenName="Calendar"
         />
 
-        <Section icon="md-book" description="Journal" screenName="Journal" />
+        <Section
+          icon="book-open-page-variant"
+          description="Journal"
+          screenName="Journal"
+        />
 
         <Section
-          icon="ios-chatboxes"
+          icon="android-messages"
           description="Check-In"
           screenName="ChatBot"
         />
-
-        <Section icon="md-help-circle-outline" description="Support" />
+        <Section icon="help-circle-outline" description="Support" />
       </View>
       <View>
         <Footer />
@@ -55,9 +58,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+    justifyContent: "space-between",
   },
   header: {
-    height: "40%",
+    height: "35%",
     width: "100%",
     backgroundColor: colors.primary,
     alignItems: "center",
@@ -66,21 +70,23 @@ const styles = StyleSheet.create({
   layout: {
     flexWrap: "wrap",
     flexDirection: "row",
+    justifyContent: "center",
   },
   button: {
     backgroundColor: colors.primary,
     padding: 10,
     borderRadius: 10,
-    margin: 15,
+    margin: 10,
     width: "40%",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: 10,
   },
   text: {
     color: "#fff",
     fontWeight: "bold",
     marginTop: 10,
+    alignSelf: "center",
   },
 });
 

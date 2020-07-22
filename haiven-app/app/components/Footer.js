@@ -16,7 +16,8 @@ export class Footer extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
+    marginBottom: "8%",
+    marginRight: "2%",
     padding: 20,
     alignItems: "center",
     justifyContent: "center", //Here is the trick
