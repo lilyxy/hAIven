@@ -21,7 +21,7 @@ export function Section({ screenName, icon, description }) {
   );
 }
 
-function MainScreen() {
+function MainScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -47,7 +47,19 @@ function MainScreen() {
         />
         <Section icon="help-circle-outline" description="Support" />
       </View>
-      <View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Settings");
+          }}
+        >
+          <MaterialCommunityIcons
+            style={{ alignSelf: "center", marginLeft: "2%" }}
+            name="settings"
+            size={50}
+            color={colors.primary}
+          />
+        </TouchableOpacity>
         <Footer />
       </View>
     </SafeAreaView>
