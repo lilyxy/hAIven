@@ -7,10 +7,13 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 export function Section({ screenName, icon, description }) {
+  var today = new Date().toDateString();
   const navigation = useNavigation();
   return (
     <View style={styles.button}>
-      <TouchableOpacity onPress={() => navigation.navigate(screenName)}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(screenName, { date: today })}
+      >
         <Ionicons name={icon} size={60} color={colors.white} />
         <Text style={styles.text}>{description}</Text>
       </TouchableOpacity>
