@@ -11,6 +11,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.2
 jmespath==0.10.0
 joblib==0.16.0
+keras==2.3.1
 kiwisolver==1.2.0
 librosa==0.7.2
 llvmlite==0.31.0
@@ -19,6 +20,7 @@ matplotlib==3.2.2
 numba==0.48.0
 numpy==1.19.0
 pandas==1.0.5
+pickleshare==0.7.5
 praat-parselmouth==0.3.3
 pycparser==2.20
 pyparsing==2.4.7
@@ -34,6 +36,7 @@ six==1.15.0
 sounddevice==0.3.15
 SoundFile==0.10.3.post1
 threadpoolctl==2.1.0
+tqdm==4.47.0
 urllib3==1.25.9
 Wave==0.0.2
 webrtcvad==2.0.10

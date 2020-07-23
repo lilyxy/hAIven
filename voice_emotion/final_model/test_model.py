@@ -10,7 +10,7 @@ from keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
 from sklearn.utils.class_weight import compute_class_weight
 
 
-model = pickle.load(open("voice_emotion/Keras/emotion_cnn.pkl", "rb"))
+model = pickle.load(open("voice_emotion/final_model/emotion_cnn.pkl", "rb"))
 
 # Set test data
 file_properties = pd.read_csv('voice_emotion/complete_index.csv')
