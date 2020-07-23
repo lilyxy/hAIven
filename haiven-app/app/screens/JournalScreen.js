@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   Text,
+  TouchableWithoutFeedback,
   Dimensions,
   Picker,
   Button,
@@ -13,6 +14,7 @@ import colors from "../config/colors";
 import { Footer } from "../components/Footer";
 import { Ionicons } from "@expo/vector-icons";
 
+// Journal entry component
 export class Journal extends React.Component {
   constructor(props){
     super(props)
@@ -26,11 +28,10 @@ export class Journal extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.subheading}>Journal</Text>
         <TextInput
           style={styles.entry}
           multiline
-          placeholder="How was your day?"
+          placeholder="Tell me about your day."
           placeholderTextColor="#000"
           // Implement this when we have a database connected.
           // When text is changed we can save to database.
@@ -41,27 +42,27 @@ export class Journal extends React.Component {
   }
 }
 
+// Mood component
 export class Mood extends React.Component {
   render() {
     return (
-      <View style={{ alignItems: "center", marginRight: 50 }}>
+      <View>
         <Text style={styles.subheading}>{this.props.subheading}</Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View
             style={[styles.circle, { backgroundColor: this.props.bgcolor }]}
           ></View>
-
           <Text
             style={{
-              backgroundColor: colors.grey,
               borderRadius: 10,
               padding: 5,
+              backgroundColor: this.props.textBackground,
             }}
           >
             {this.props.mood}
           </Text>
         </View>
-        <View style={{}}>
+        <View>
           <Text>{this.props.time}</Text>
           <Text>{this.props.length}</Text>
         </View>
@@ -75,7 +76,8 @@ function JournalScreen({ route }) {
   const { date } = route.params;
   const [selectedValue, setSelectedValue] = React.useState("")
   const [journalContent, setJournalContent] = React.useState("")
-  const moodColor = !selectedValue ? colors.grey : colors[selectedValue];
+  const moodColor = !selectedValue ? colors.white : colors[selectedValue];
+  const textBackground = !selectedValue ? colors.white : colors.secondary;
 
   const handleJournal = () => {
     axios.post('http://127.0.0.1:5000/journal', {
@@ -99,38 +101,63 @@ function JournalScreen({ route }) {
       <View>
         <Text style={styles.dateHeading}>{date}</Text>
       </View>
-      <View style={[styles.container, styles.layout]}>
-        <View>
-          <Mood subheading="My Mood" bgcolor={moodColor} mood={selectedValue} />
-          <View>
-            <Picker
-              selectedValue={selectedValue}
-              // onValueChange={(itemValue) => setSelectedValue(itemValue); {this.handleJournalMood}}
-              onValueChange={itemValue => { setSelectedValue(itemValue)}}
-              // onValueChange={itemValue => { setSelectedValue(itemValue); this.handleJournalMood; }}
-              prompt="Mood?"
-            >
-              <Picker.Item label="sad" value="sad" />
-              <Picker.Item label="happy" value="happy" />
-              <Picker.Item label="angry" value="angry" />
-            </Picker>
-          </View>
+      <View
+        style={{
+          borderRadius: 10,
+          borderWidth: 1,
+          borderColor: colors.primary,
+          overflow: "hidden",
+          width: "50%",
+        }}
+      >
+        <Picker
+          style={{
+            backgroundColor: colors.secondary,
+            padding: 0,
+          }}
+          selectedValue={selectedValue}
+          onValueChange={(itemValue) => setSelectedValue(itemValue)}
+          prompt="How are you feeling today?"
+        >
+          <Picker.Item label="Click to Select a Mood" value="" />
+          <Picker.Item label="Sad" value="sad" />
+          <Picker.Item label="Happy" value="happy" />
+          <Picker.Item label="Angry" value="angry" />
+        </Picker>
+      </View>
+      <View style={styles.layout}>
+        <View style={styles.moodContainer}>
+          <Mood
+            subheading="My Mood"
+            bgcolor={moodColor}
+            mood={selectedValue}
+            textBackground={textBackground}
+          />
         </View>
-        <Mood
-          subheading="Audio (1)"
-          bgcolor={colors.angry}
-          mood="Angry"
-          time="9:48PM"
-          length="3 minutes"
-        />
+
+        <View style={styles.moodContainer}>
+          <Mood
+            subheading="Audio (1)"
+            bgcolor={colors.angry}
+            mood="Angry"
+            time="9:48PM"
+            length="3 minutes"
+          />
+        </View>
       </View>
       <View>
-        <Ionicons
-          style={styles.notification}
-          name="ios-chatbubbles"
-          size={40}
-          color="#8FBC8F"
-        />
+        <TouchableWithoutFeedback
+          onPress={() => {
+            navigation.navigate("ChatBot");
+          }}
+        >
+          <Ionicons
+            style={styles.notification}
+            name="ios-notifications"
+            size={40}
+            color={colors.black}
+          />
+        </TouchableWithoutFeedback>
         <Journal 
           style={{ alignSelf: "stretch" }} 
           onJournalChange={text => setJournalContent(text)}
@@ -152,6 +179,13 @@ const styles = StyleSheet.create({
   mood: {
     flexDirection: "row",
   },
+  moodContainer: {
+    alignItems: "center",
+    backgroundColor: colors.secondary,
+    borderRadius: 10,
+    width: "45%",
+    padding: 10,
+  },
   notification: {
     position: "absolute",
     alignSelf: "flex-end",
@@ -163,25 +197,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 20,
     padding: 10,
-    margin: 15,
   },
   entry: {
     backgroundColor: colors.secondary,
-    minHeight: Dimensions.get("window").height * 0.3,
+    minHeight: Dimensions.get("window").height * 0.2,
     borderRadius: 10,
     padding: 10,
   },
   subheading: {
     color: colors.primary,
     fontWeight: "bold",
-    margin: 10,
   },
   layout: {
-    flexWrap: "wrap",
     flexDirection: "row",
-    alignItems: "baseline",
-    alignSelf: "flex-start",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   circle: {
     borderRadius:
