@@ -48,7 +48,7 @@ function CalendarScreen({ navigation }) {
               textMonthFontWeight: "bold",
               textMonthFontSize: 30,
             }}
-            m // Collection of dates that have to be colored in a special way. Default = {}
+            // Collection of dates that have to be colored in a special way. Default = {}
             markedDates={{
               "2020-07-19": {
                 disabled: true,
@@ -109,16 +109,7 @@ function CalendarScreen({ navigation }) {
             markingType={"period"}
           />
         </View>
-        <View
-          style={{
-            borderBottomColor: colors.primary,
-            borderBottomWidth: 5,
-            width: "50%",
-            marginTop: 10,
-            alignSelf: "center",
-          }}
-        />
-        <View style={{ padding: 10 }}>
+        <View style={{ padding: 20 }}>
           <Text style={styles.subheading}>Insights</Text>
           <Insight
             insight="Happiness"
@@ -146,10 +137,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   insight: {
-    margin: 10,
     backgroundColor: colors.secondary,
     borderRadius: 10,
     padding: 10,
+    marginVertical: 10,
   },
   subheading: {
     color: colors.primary,
