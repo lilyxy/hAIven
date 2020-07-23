@@ -24,12 +24,7 @@ class ChatBot extends React.Component {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }));
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(
-        previousState.messages,
-        "Do you want to talk?"
-      ),
-    }));
+    this.sendBotResponse();
   }
 
   sendBotResponse() {
