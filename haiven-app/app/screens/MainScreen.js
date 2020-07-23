@@ -34,6 +34,7 @@ function MainScreen({route}) {
           icon="md-calendar"
           description="Calendar"
           screenName="Calendar"
+          userid={username}
         />
 
         <Section icon="md-book" description="Journal" screenName="Journal" userid={username} />

@@ -36,7 +36,6 @@ export class Journal extends React.Component {
           // When text is changed we can save to database.
           onChangeText={this.props.onJournalChange}
         />
-        <Button title="Submit" color={colors.primary} />
       </View>
     );
   }
@@ -136,7 +135,7 @@ function JournalScreen({ route }) {
           style={{ alignSelf: "stretch" }} 
           onJournalChange={text => setJournalContent(text)}
         />
-        <button onClick={handleJournal}>Submit</button>
+        <button onClick={handleJournal} color={colors.primary}>Submit</button>
       </View>
       <Footer />
     </View>
