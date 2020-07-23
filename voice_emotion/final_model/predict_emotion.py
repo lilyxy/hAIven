@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import librosa
 import pickle
+import soundfile as sf
+import os
 
 from tqdm import tqdm
 from keras.utils import to_categorical
@@ -70,6 +72,30 @@ def predict_emotion(model, input_audio):
     return prediction
 
 
+def envelope(y, sr, threshold):
+    mask = []
+    y_abs = pd.Series(y).apply(np.abs)
+    y_mean = y_abs.rolling(window=int(
+        sr/10), min_periods=1, center=True).mean()
+    for mean in y_mean:
+        if mean > threshold:
+            mask.append(True)
+        else:
+            mask.append(False)
+    return np.array(y[mask])
+
+
+def clean_audio(audio_file):
+    y, sr = librosa.load(audio_file)
+    y = envelope(y, sr, 0.0005)
+
+    with open(audio_file, 'w') as new_file:
+        sf.write(audio_file, y, sr)
+        new_file.close()
+
+    return audio_file
+
+
 # Load the model
 model = pickle.load(open("voice_emotion/final_model/emotion_cnn.pkl", "rb"))
 
@@ -77,5 +103,6 @@ model = pickle.load(open("voice_emotion/final_model/emotion_cnn.pkl", "rb"))
 audio_files = []
 
 for i in audio_files:
-    prediction = predict_emotion(model, i)
+    cleaned_audio = clean_audio(i)
+    prediction = predict_emotion(model, cleaned_audio)
     print('Predicted Emotion: {}'.format(prediction))
