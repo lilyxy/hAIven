@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
+import { Footer } from "../components/Footer";
 
 const BOT_USER = {
   _id: 2,
@@ -50,6 +51,7 @@ class ChatBot extends React.Component {
             _id: 1,
           }}
         />
+        <Footer />
       </View>
     );
   }
