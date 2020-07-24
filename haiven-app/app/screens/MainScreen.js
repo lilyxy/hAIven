@@ -25,7 +25,7 @@ function MainScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Image source={require("../assets/logo.png")} />
+        <Image source={require("../assets/logo-small.png")} />
       </View>
       <View style={styles.layout}>
         <Section

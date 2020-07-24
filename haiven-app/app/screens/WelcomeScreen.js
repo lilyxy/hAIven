@@ -51,7 +51,10 @@ class WelcomeScreen extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.background}>
-          <Image source={require("../assets/logo.png")} />
+          <Image
+            style={{ margin: 15 }}
+            source={require("../assets/logo.png")}
+          />
           <Haiven />
         </View>
         <View style={styles.logIn}>
