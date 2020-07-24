@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import colors from "../config/colors";
+import Haiven from "../components/MyAppText";
 
 class WelcomeScreen extends React.Component {
   constructor() {
@@ -51,6 +52,7 @@ class WelcomeScreen extends React.Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.background}>
           <Image source={require("../assets/logo.png")} />
+          <Haiven />
         </View>
         <View style={styles.logIn}>
           <TextInput
