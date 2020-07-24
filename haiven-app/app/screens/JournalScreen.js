@@ -87,13 +87,16 @@ function JournalScreen({ route, navigation }) {
         <Picker
           style={{
             backgroundColor: colors.secondary,
-            padding: 0,
           }}
           selectedValue={selectedValue}
           onValueChange={(itemValue) => setSelectedValue(itemValue)}
           prompt="How are you feeling today?"
         >
-          <Picker.Item label="Click to Select a Mood" value="" />
+          <Picker.Item
+            label="Click to Select a Mood"
+            value=""
+            itemPosition="1"
+          />
           <Picker.Item label="Sad" value="sad" />
           <Picker.Item label="Happy" value="happy" />
           <Picker.Item label="Angry" value="angry" />
@@ -179,6 +182,7 @@ const styles = StyleSheet.create({
   subheading: {
     color: colors.primary,
     fontWeight: "bold",
+    fontSize: 15,
   },
   layout: {
     flexDirection: "row",
