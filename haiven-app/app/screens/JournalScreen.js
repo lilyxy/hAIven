@@ -162,7 +162,7 @@ function JournalScreen({ route }) {
           style={{ alignSelf: "stretch" }} 
           onJournalChange={text => setJournalContent(text)}
         />
-        <button onClick={handleJournal} color={colors.primary}>Submit</button>
+        <Button onClick={handleJournal} color={colors.primary} title="Submit"/>
       </View>
       <Footer />
     </View>
