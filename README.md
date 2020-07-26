@@ -28,7 +28,6 @@
 
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Contributing](#contributing)
 * [Contact](#contact)
@@ -49,14 +48,6 @@ Haiven automatically starts to record audio if it detects aggressive noises. Lik
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
 
 ### Installation
 1. Clone the repo
