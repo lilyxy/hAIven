@@ -2,13 +2,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/lilyxy/hAIven">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">HAIven</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An app that makes you feel safe.
     <br />
     <a href="https://github.com/lilyxy/hAIven"><strong>Explore the docs »</strong></a>
     <br />
@@ -28,7 +28,6 @@
 
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
-  * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Contributing](#contributing)
 * [Contact](#contact)
@@ -37,8 +36,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Our solution, Haiven, is a smartphone app designed to help women track their experiences with intimate partner violence. The app was envisioned as a ‘friendly neighbour’ who can overhear abusive encounters coming from next door, and check-in with the woman if they’re concerned for their safety.
 
@@ -52,28 +49,18 @@ Haiven automatically starts to record audio if it detects aggressive noises. Lik
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
-
 ### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
 ```sh
 git clone https://github.com/your_username_/Project-Name.git
 ```
-3. Install NPM packages
+2. install the required libraries
 ```sh
-npm install
+pip install -r requirements.txt 
 ```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
+3. Install dependencies
+```sh
+pip install
 ```
 
 
