@@ -94,6 +94,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Alexi Michael - https://github.com/michaa1 - alexi.michael.13@gmail.com
+Jenny - https://github.com/j-nnyhuang - jennyhuang.wj@gmail.com 
+Lily Wang - https://github.com/lilyxy - lilyxy@umich.edu
+Elaine Lau - https://github.com/yunglau - tsoi.lau@mail.mcgill.ca
