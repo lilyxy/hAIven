@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/lilyxy/hAIven">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">HAIven</h3>
@@ -37,8 +37,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Our solution, Haiven, is a smartphone app designed to help women track their experiences with intimate partner violence. The app was envisioned as a ‘friendly neighbour’ who can overhear abusive encounters coming from next door, and check-in with the woman if they’re concerned for their safety.
 
