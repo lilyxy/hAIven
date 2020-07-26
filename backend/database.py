@@ -24,12 +24,12 @@ def query_user(username):
     return response['Items']
     
     
-def create_journal(user_id, date, mood_input, records, mood_analyzed):
+def create_journal(username, date, mood_input, records, mood_analyzed):
     table = db.Table('journal')
 
     response = table.put_item(
         Item={
-            'user_id': user_id,
+            'username': username,
             'date': date,
             'mood_input': mood_input,
             'records': records,
@@ -38,8 +38,10 @@ def create_journal(user_id, date, mood_input, records, mood_analyzed):
     )
 
 def query_journal(username):
-    table = dynamodb.Table('journal')
+    table = db.Table('journal')
     response = table.query(
         KeyConditionExpression=Key('username').eq(username)
     )
     return response['Items']
+    
+    
