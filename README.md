@@ -8,7 +8,7 @@
   <h3 align="center">HAIven</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    An app that makes you feel safe.
     <br />
     <a href="https://github.com/lilyxy/hAIven"><strong>Explore the docs »</strong></a>
     <br />
