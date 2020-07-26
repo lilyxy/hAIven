@@ -94,7 +94,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- CONTACT -->
 ## Contact
 
-Alexi Michael - https://github.com/michaa1 - alexi.michael.13@gmail.com
-Jenny - https://github.com/j-nnyhuang - jennyhuang.wj@gmail.com 
-Lily Wang - https://github.com/lilyxy - lilyxy@umich.edu
+Alexi Michael - https://github.com/michaa1 - alexi.michael.13@gmail.com.     <br />
+Jenny - https://github.com/j-nnyhuang - jennyhuang.wj@gmail.com     <br />
+Lily Wang - https://github.com/lilyxy - lilyxy@umich.edu    <br />
 Elaine Lau - https://github.com/yunglau - tsoi.lau@mail.mcgill.ca
