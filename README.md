@@ -43,7 +43,13 @@ Our solution, Haiven, is a smartphone app designed to help women track their exp
 Haiven automatically starts to record audio if it detects aggressive noises. Like a friendly neighbour, Haiven will check-in later in the day to make sure everything’s okay. If the audio is extremely aggressive, and Haiven is concerned for the user’s safety, an emergency contact will be immediately notified.
 
 <!-- MODELS -->
+## Models
 
+<img src="images/aggressionmodel02.png" alt="Logo" width="600" height="300">
+The first step of the process is to detect whether or not audio is aggressive. Haiven continually monitors audio coming into the phone and extracts various features: the spectrogram of pitches, the Mel frequency cepstral coefficients, speech tempo, energy intensity, and vocal tract parameters. These correspond to well-studied characteristics of aggression - Aggressive speech tends to have higher intensity, lower pitch, faster articulation, and increased airflow in producing vowels.   
+
+<img src="images/aggressionmodel03.png" alt="Logo" width="600" height="300">
+Using a custom dataset of 200 5 to 10-second clips with varying aggression, we train CNNs on time-series features and regressions on the rest so that each feature predicts independently, and then use a voting system to determine a final prediction with about 90% accuracy. During application usage, we can also elect to use fewer features in detection to trade some accuracy for lower power consumption.
 
 
 <!-- GETTING STARTED -->
