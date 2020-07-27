@@ -56,7 +56,6 @@ Haiven automatically starts to record audio if it detects aggressive noises. Lik
 ## Pipeline
 <p align="center">
 <img src="images/pipeline.png" alt="pipeline">
-  <h4 align="center">Pipeline</h3>
 </p>
 
 <!-- MODELS -->
