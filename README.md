@@ -30,7 +30,7 @@
 * [Pipeline](#pipeline)
 * [Models](#models)
   * [Aggression Detection Model](#aggression-detection-model)
-  * [Audio Sentiment Analysis Model](#aggression-model)
+  * [Audio Sentiment Analysis Model](#audio-sentiment-analysis-model)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
 * [Contributing](#contributing)
@@ -106,7 +106,7 @@ Datasets
 * Training data: 3238
 * Testing data: 810
 
-<p float="left">
+<p float="center">
   <img src="images/audiosentimentmodel01.png" width="450" height="300"/>
   <img src="images/audiosentimentmodel02.png" width="450" height="300"/>
   <h4 align="center">Separated audio file and Cleaned audio file</h3>
