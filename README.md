@@ -58,7 +58,11 @@ Haiven automatically starts to record audio if it detects aggressive noises. Lik
 </p>
 The first step of the process is to detect whether or not audio is aggressive. Haiven continually monitors audio coming into the phone and extracts various features: the spectrogram of pitches, the Mel frequency cepstral coefficients, speech tempo, energy intensity, and vocal tract parameters. These correspond to well-studied characteristics of aggression - Aggressive speech tends to have higher intensity, lower pitch, faster articulation, and increased airflow in producing vowels.   
 
-<img src="images/aggressionmodel03.png" alt="Logo" width="600" height="300">
+<p align="center">
+<img src="images/aggressionmodel03.png" alt="Logo" width="600" height="400">
+  <h4 align="center">Spectrogram</h3>
+</p>
+
 Using a custom dataset of 200 5 to 10-second clips with varying aggression, we train CNNs on time-series features and regressions on the rest so that each feature predicts independently, and then use a voting system to determine a final prediction with about 90% accuracy. During application usage, we can also elect to use fewer features in detection to trade some accuracy for lower power consumption.
 
 
