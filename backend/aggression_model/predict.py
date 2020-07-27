@@ -106,9 +106,9 @@ def get_aud_features_all(wav_path, num_mfcc = 40, hop_length = 512, n_fft = 2048
     oenv = librosa.onset.onset_strength(y = snd, sr=r, hop_length=hop_length)
     tempogram = librosa.feature.tempogram(onset_envelope=oenv, sr=r, hop_length=512)
     avg_tempogram = np.mean(tempogram, axis = 0)
-    pars_aud = parselmouth.Sound(wav_path)
-    intensity_obj = pars_aud.to_intensity()
-    intensity = intensity_obj.xs()
+    #pars_aud = parselmouth.Sound(wav_path)
+    #intensity_obj = pars_aud.to_intensity()
+    intensity = [0]*1000#intensity_obj.xs()
     if len(intensity) < duration*PARSF:
         intensity = np.pad(intensity, (0, duration*PARSF-len(intensity)), mode = pad_mode)
         #print(intensity)
