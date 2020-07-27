@@ -27,6 +27,7 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+  * [User Interface](#user-interface)
 * [Pipeline](#pipeline)
 * [Models](#models)
   * [Aggression Detection Model](#aggression-detection-model)
@@ -35,6 +36,7 @@
   * [Installation](#installation)
 * [Contributing](#contributing)
 * [Contact](#contact)
+* [Acknowledgements](#acknowledgements)
 
 
 
@@ -44,6 +46,11 @@
 Our solution, Haiven, is a smartphone app designed to help women track their experiences with intimate partner violence. The app was envisioned as a ‘friendly neighbour’ who can overhear abusive encounters coming from next door, and check-in with the woman if they’re concerned for their safety.
 
 Haiven automatically starts to record audio if it detects aggressive noises. Like a friendly neighbour, Haiven will check-in later in the day to make sure everything’s okay. If the audio is extremely aggressive, and Haiven is concerned for the user’s safety, an emergency contact will be immediately notified.
+
+### User Interface
+<p align="center">
+<img src="images/UserInterface.png" alt="userinterface">
+</p>
 
 <!-- PIPELINE -->
 ## Pipeline
@@ -80,7 +87,7 @@ Dataset
 The first step of the process is to detect whether or not audio is aggressive. Haiven continually monitors audio coming into the phone and extracts various features: the spectrogram of pitches, the Mel frequency cepstral coefficients, speech tempo, energy intensity, and vocal tract parameters. These correspond to well-studied characteristics of aggression - Aggressive speech tends to have higher intensity, lower pitch, faster articulation, and increased airflow in producing vowels.   
 
 <p align="center">
-<img src="images/aggressionmodel03.png" alt="Logo" width="600" height="400">
+<img src="images/aggressionmodel03.png" alt="Logo" width="500" height="350">
   <h4 align="center">Tempogram</h3>
 </p>
 
@@ -115,7 +122,7 @@ Datasets
 Each separated audio file is then cleaned by removing any dead space.
 
 <p align="center">
-<img src="images/audiosentimentmodel03.png" alt="Logo" width="600" height="400">
+<img src="images/audiosentimentmodel03.png" alt="Logo" width="500" height="350">
   <h4 align="center">MFCC (per0.4s window)</h3>
 </p>
 
@@ -161,8 +168,17 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- CONTACT -->
 ## Contact
-
 Alexi Michael - https://github.com/michaa1 - alexi.michael.13@gmail.com.     <br />
 Jenny - https://github.com/j-nnyhuang - jennyhuang.wj@gmail.com     <br />
 Lily Wang - https://github.com/lilyxy - lilyxy@umich.edu    <br />
 Elaine Lau - https://github.com/yunglau - tsoi.lau@mail.mcgill.ca
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* Sumana Basu
+* Bhairav Mehta
+* Zhitao Gong
+* Marjan Albooyeh
+* [Voice Emotion](https://github.com/alexmuhr/Voice_Emotion)
+* [React Native Calculator](https://github.com/ReactNativeSchool/react-native-calculator)
