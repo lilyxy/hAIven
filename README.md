@@ -8,7 +8,7 @@
   <h3 align="center">HAIven</h3>
 
   <p align="center">
-    An app that makes you feel safe.
+    Your Friendly Neighbour
     <br />
     <a href="https://github.com/lilyxy/hAIven"><strong>Explore the docs »</strong></a>
     <br />
