@@ -29,6 +29,8 @@
 * [About the Project](#about-the-project)
 * [Pipeline](#pipeline)
 * [Models](#models)
+  * [Aggression Detection Model](#aggression-detection-model)
+  * [Audio Sentiment Analysis Model](#aggression-model)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
 * [Contributing](#contributing)
@@ -52,6 +54,25 @@ Haiven automatically starts to record audio if it detects aggressive noises. Lik
 
 <!-- MODELS -->
 ## Models
+### Aggression Detection Model
+Aggression Model
+* CNN models on time series features (1D and 2D)
+  * Mel spectrogram
+  * Intensity
+  * Tempo
+* Regression with features not in sequence e.g. shimmer
+* Voting system for final estimation of aggression
+* Accuracy: 90%
+
+Output
+* Label of aggressive or not
+* Confidence probability
+
+Dataset
+* ~200 .wav files
+* 5-10 seconds long
+* Taken from youtube
+
 <p align="center">
 <img src="images/aggressionmodel02.png" alt="Logo" width="600" height="300">
   <h4 align="center">Spectrogram</h3>
@@ -60,10 +81,47 @@ The first step of the process is to detect whether or not audio is aggressive. H
 
 <p align="center">
 <img src="images/aggressionmodel03.png" alt="Logo" width="600" height="400">
-  <h4 align="center">Spectrogram</h3>
+  <h4 align="center">Tempogram</h3>
 </p>
 
 Using a custom dataset of 200 5 to 10-second clips with varying aggression, we train CNNs on time-series features and regressions on the rest so that each feature predicts independently, and then use a voting system to determine a final prediction with about 90% accuracy. During application usage, we can also elect to use fewer features in detection to trade some accuracy for lower power consumption.
+
+### Audio Sentiment Analysis Model
+Audio Sentiment Analysis Model
+* Convolutional Neural Network
+
+Analysis
+* Emotion Classification:
+  * Neutral
+  * Happy
+  * Sad
+  * Angry
+  * Fearful
+  * Disgusted
+  * Surprised
+* Accuracy: 85.1%
+
+Datasets
+* RAVDESS, SAVEE, TESS 
+* Training data: 3238
+* Testing data: 810
+
+<p float="left">
+  <img src="images/audiosentimentmodel01.png" width="450" height="300"/>
+  <img src="images/audiosentimentmodel02.png" width="450" height="300"/>
+  <h4 align="center">Separated audio file and Cleaned audio file</h3>
+</p>
+
+Each separated audio file is then cleaned by removing any dead space.
+
+<p align="center">
+<img src="images/audiosentimentmodel03.png" alt="Logo" width="600" height="400">
+  <h4 align="center">MFCC (per0.4s window)</h3>
+</p>
+
+The cleaned file is separated into windows of 0.4s, and each window is converted into a Mel-frequency cepstrum. The coefficients of this graph aim to represent distinct units of sound based on the human perception of frequencies. The values of these coefficients are then aggregated into an array for each window, and then the windows are aggregated for the entire audio file.
+
+The resulting array is then fed into an emotion classification model. The model is a convolutional neural network that was trained on the combination of three audio emotion datasets; RAVDESS, TESS, AND SAVEE. The model takes in the pre-processed audio file and predicts the emotion of the sample. The output is one of seven classes of emotions, and our current model is able to predict emotion with 85.1% accuracy.
 
 
 <!-- GETTING STARTED -->
