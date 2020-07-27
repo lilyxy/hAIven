@@ -27,6 +27,7 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+* [Models](#models)
 * [Getting Started](#getting-started)
   * [Installation](#installation)
 * [Contributing](#contributing)
@@ -40,6 +41,8 @@
 Our solution, Haiven, is a smartphone app designed to help women track their experiences with intimate partner violence. The app was envisioned as a ‘friendly neighbour’ who can overhear abusive encounters coming from next door, and check-in with the woman if they’re concerned for their safety.
 
 Haiven automatically starts to record audio if it detects aggressive noises. Like a friendly neighbour, Haiven will check-in later in the day to make sure everything’s okay. If the audio is extremely aggressive, and Haiven is concerned for the user’s safety, an emergency contact will be immediately notified.
+
+<!-- MODELS -->
 
 
 
