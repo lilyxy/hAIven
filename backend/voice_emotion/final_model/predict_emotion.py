@@ -5,9 +5,9 @@ import pickle
 import soundfile as sf
 import os
 from tqdm import tqdm
-from tensorflow.python.keras.utils import to_categorical
-from tensorflow.python.keras.models import Sequential
-from tensorflow.python.keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
+from keras.utils import to_categorical
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
 from sklearn.utils.class_weight import compute_class_weight
 # Create a configuration class
 import tensorflow as tf
