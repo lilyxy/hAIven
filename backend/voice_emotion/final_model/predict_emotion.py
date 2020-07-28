@@ -64,10 +64,10 @@ def predict_emotion(model, input_audio):
                             axis=0)/len(local_results))[0]
     local_results = list(local_results)
     prediction = np.argmax(local_results)
-
+    
     # Convert prediction from number to label
-    emotions = {0: 'neutral', 1: 'happy', 2: 'sad', 3: 'angry',
-                4: 'fearful', 5: 'disgusted', 6: 'surprised'}
+    emotions = {0: 'Neutral: {}'.format(local_results[0]), 1: 'Happy: {}'.format(local_results[1]), 2: 'Sad: {}'.format(local_results[2]), 3: 'Angry: {}'.format(
+        local_results[3]), 4: 'Fearful: {}'.format(local_results[4]), 5: 'Disgusted: {}'.format(local_results[5]), 6: 'Surprised: {}'.format(local_results[6])}
     prediction = emotions[prediction]
 
     return prediction
