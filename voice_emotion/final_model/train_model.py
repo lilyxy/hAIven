@@ -48,6 +48,8 @@ def build_train_feats():
     X = []
     y = []
 
+    iter = 0
+
     for row in tqdm(train.iterrows(), total=3238, ncols=100, desc='Training Data'):
 
         # Initialize min and max values for each file for scaling
@@ -92,6 +94,11 @@ def build_train_feats():
             # add features of window to X
             Xf.append(X_mfccs)
 
+        iter += 1
+
+        if iter % 50 == 0:
+            break
+
         # Put window data for file into array and scale
         Xf = np.array(Xf)
         Xf = (Xf - _min) / (_max - _min)
@@ -101,8 +108,8 @@ def build_train_feats():
             X.append(ar)
 
     # Once windows have been taken from every file reshape X
-    X = np.array(X)
-    X = X.reshape(X.shape[0], X.shape[1], X.shape[2], 1)
+    X = np.asarray(X)
+    X = X.reshape((X.shape[0], X.shape[1], X.shape[2], 1))
     y = to_categorical(y, num_classes=7)
 
     return X, y
@@ -117,6 +124,7 @@ class_weight = compute_class_weight('balanced', np.unique(y_flat), y_flat)
 
 # Required input shape for CNN
 input_shape = (X.shape[1], X.shape[2], 1)
+print(input_shape)
 
 
 # Define the model
@@ -153,7 +161,7 @@ keras_model.fit(X, y, epochs=25, batch_size=32,
 
 
 # Save the model
-pickle.dump(keras_model, open("voice_emotion/Keras/emotion_cnn.pkl", "wb"))
+pickle.dump(keras_model, open("voice_emotion/Keras/test_cnn.pkl", "wb"))
 
 print('''
     -------- Model Saved --------

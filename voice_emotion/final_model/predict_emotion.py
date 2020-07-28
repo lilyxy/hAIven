@@ -4,15 +4,18 @@ import librosa
 import pickle
 import soundfile as sf
 import os
+import tensorflow as tf
+import tensorflow.keras as keras
 
 from tqdm import tqdm
-from keras.utils import to_categorical
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
 from sklearn.utils.class_weight import compute_class_weight
 
-
 # Create a configuration class
+
+
 class Config:
     def __init__(self, n_mfcc=26, n_feat=13, n_fft=552, sr=22050, window=0.4, test_shift=0.1):
         self.n_mfcc = n_mfcc
@@ -32,6 +35,7 @@ config = Config()
 def predict_emotion(model, input_audio):
 
     local_results = []
+    predict_probability = []
     _min, _max = float('inf'), -float('inf')
 
     wav, sr = librosa.load(input_audio)
@@ -64,9 +68,8 @@ def predict_emotion(model, input_audio):
     local_results = list(local_results)
     prediction = np.argmax(local_results)
 
-    # Convert prediction from number to label
-    emotions = {0: 'neutral', 1: 'happy', 2: 'sad', 3: 'angry',
-                4: 'fearful', 5: 'disgusted', 6: 'surprised'}
+    emotions = {0: 'Neutral: {}'.format(local_results[0]), 1: 'Happy: {}'.format(local_results[1]), 2: 'Sad: {}'.format(local_results[2]), 3: 'Angry: {}'.format(
+        local_results[3]), 4: 'Fearful: {}'.format(local_results[4]), 5: 'Disgusted: {}'.format(local_results[5]), 6: 'Surprised: {}'.format(local_results[6])}
     prediction = emotions[prediction]
 
     return prediction
@@ -100,7 +103,8 @@ def clean_audio(audio_file):
 model = pickle.load(open("voice_emotion/final_model/emotion_cnn.pkl", "rb"))
 
 # Preprocess audio data
-audio_files = []
+audio_files = ['voice_emotion/final_model/test_audio_01.wav',
+               'voice_emotion/final_model/test_audio_02.wav']
 
 for i in audio_files:
     cleaned_audio = clean_audio(i)
