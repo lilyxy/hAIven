@@ -34,7 +34,7 @@ six==1.15.0
 sounddevice==0.3.15
 SoundFile==0.10.3.post1
 threadpoolctl==2.1.0
-urllib3==1.25.9
+urllib3==1.26.5
 Wave==0.0.2
 webrtcvad==2.0.10
 Werkzeug==1.0.1
