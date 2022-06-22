@@ -17,7 +17,7 @@ llvmlite==0.31.0
 MarkupSafe==1.1.1
 matplotlib==3.2.2
 numba==0.48.0
-numpy==1.19.0
+numpy==1.22.0
 pandas==1.0.5
 praat-parselmouth==0.3.3
 pycparser==2.20
